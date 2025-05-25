@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Informācijas daudzuma mērvienības</title>
+    <style>
+        body {
+            background-image: url('cipari.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            background-color: rgba(255, 255, 0, 0.9);
+            padding: 20px;
+            width: 300px;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: rgb(0, 220, 0);
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Informācijas daudzuma mērvienības</h1>
+
+    <form>
+        <label for="gb">GB =</label>
+        <input type="text" id="gb"><br>
+
+        <label for="mb">Izteikt megabaitos</label>
+        <input type="text" id="mb" readonly> MB<br>
+
+        <label for="mib">Izteikt mibibaitos</label>
+        <input type="text" id="mib" readonly> MiB<br>
+
+        <button type="button" onclick="pārrēķināt()">Aprēķināt</button>
+    </form>
+
+    <script>
+        function pārrēķināt() {
+            const gb = parseFloat(document.getElementById('gb').value);
+            if (!isNaN(gb)) {
+                document.getElementById('mb').value = gb * 1000;
+                document.getElementById('mib').value = (gb * 1000000000 / 1048576).toFixed(2);
+            } else {
+                alert("Lūdzu, ievadi derīgu skaitli gigabaitos!");
+            }
+        }
+    </script>
+</body>
+</html>

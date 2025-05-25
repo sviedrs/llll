@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Gaidot dzimšanas dienu..</title>
+</head>
+<body>
+    <h1>Gaidot dzimšanas dienu..</h1>
+    <hr>
+
+    <form>
+        <p>Ievedi pilnu datumu, kad Tev būs tuvākā dzimšanas diena</p>
+
+        <label for="gads">gads:</label>
+        <input type="text" id="gads" name="gads"><br><br>
+
+        <label for="menesis">mēnesis:</label>
+        <input type="text" id="menesis" name="menesis"><br><br>
+
+        <label for="datums">diena:</label>
+        <input type="text" id="datums" name="datums"><br><br>
+
+        <button type="button" onclick="dienas();">Aprēķināt dienu skaitu līdz dzimšanas dienai</button><br><br>
+
+        <p>Līdz svētkiem atlikušas</p>
+
+        <label for="dienas">dienas :)</label>
+        <input type="text" id="dienas" name="dienas" readonly>
+    </form>
+
+    <script>
+        function dienas() {
+            const gads = parseInt(document.getElementById('gads').value);
+            const menesis = parseInt(document.getElementById('menesis').value) - 1;
+            const datums = parseInt(document.getElementById('datums').value);
+
+            const sodiena = new Date();
+            const dzimDiena = new Date(gads, menesis, datums);
+
+            if (dzimDiena < sodiena) {
+                dzimDiena.setFullYear(sodiena.getFullYear() + 1);
+            }
+
+            const dienuSkaits = Math.ceil((dzimDiena - sodiena) / (1000 * 60 * 60 * 24));
+            document.getElementById('dienas').value = dienuSkaits;
+        }
+    </script>
+</body>
+</html>
